@@ -16,7 +16,8 @@ async def start_command(message: types.Message):
 @private_router.message(or_f(Command('help'), (F.text.lower() == 'помощь')))
 @private_router.message(Command('help'))
 async def help_command(message: types.Message):
-    await message.answer('Чтобы скачать музыку пришлите ссылку на видео с YouTube')
+    await message.answer('Чтобы скачать музыку пришлите ссылку на видео с YouTube.\n'
+                         'Если что-то  не работает свяжитесь с создателем')
 
 
 @private_router.message(or_f(Command('about'), (F.text.lower() == 'О создателе')))
