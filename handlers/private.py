@@ -1,9 +1,6 @@
-import os
-
 from aiogram import types, Router, F
 from aiogram.filters import CommandStart, Command, or_f
 from aiogram.utils.formatting import Bold, as_marked_section
-from sqlalchemy.ext.asyncio import AsyncSession
 from my_filters.filter_user import MyFilter
 
 private_router = Router()
@@ -31,7 +28,11 @@ async def about_command(message: types.Message):
         'GitHub: https://github.com/Ext1ns\n')
     await message.answer(about.as_html())
 
-# Добавить ссылку на донат
+
 @private_router.message(or_f(Command('donate'), (F.text.lower() == 'Поддержать автора')))
 async def donate_command(message: types.Message):
-    pass
+    payment = as_marked_section(
+        Bold('Способы оплаты:\n'),
+        'Сбербанк: 2202 2080 9385 2797\n'
+        '(Саламов Георгий Александрович)')
+    await message.answer(payment.as_html())
